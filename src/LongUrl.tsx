@@ -56,7 +56,7 @@ const LongUrl = () => {
     <div className="long-url">
       <h1 className="my-5">단축 url 복원</h1>
 
-      <InputGroup size="lg" className="mb-3">
+      <InputGroup size="lg" className="mb-1">
         <FormControl
           placeholder="복원할 단축 url을 입력하세요."
           onChange={onChangeInput}
@@ -67,6 +67,7 @@ const LongUrl = () => {
           </Button>
         </InputGroup.Append>
       </InputGroup>
+      <p>(bit.ly, url.kr, han.gl)</p>
 
       {loding && (
         <div className="mt-5">
@@ -82,10 +83,12 @@ const LongUrl = () => {
                 <td>단축 url</td>
                 <td>{data.short_url}</td>
               </tr>
-              <tr>
-                <td>제목</td>
-                <td>{data.title}</td>
-              </tr>
+              {data.title && (
+                <tr>
+                  <td>제목</td>
+                  <td>{data.title}</td>
+                </tr>
+              )}
               <tr>
                 <td>복원 url</td>
                 <td>
