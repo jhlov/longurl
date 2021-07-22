@@ -9,14 +9,13 @@ import {
 } from "react-bootstrap";
 
 interface Data {
-  short_url: string;
-  long_url: string;
-  title: string;
+  label: string;
+  data: string;
 }
 
 const LongUrl = () => {
   const [shortUrl, setShortUrl] = useState<string>("");
-  const [data, setData] = useState<Data | null>(null);
+  const [data, setData] = useState<Data[] | null>(null);
   const [loding, setLoding] = useState<boolean>(false);
 
   const onChangeInput = (event: any) => {
@@ -79,24 +78,12 @@ const LongUrl = () => {
         <div className="mt-5">
           <Table striped bordered size="lg">
             <tbody>
-              <tr>
-                <td>단축 url</td>
-                <td>{data.short_url}</td>
-              </tr>
-              {data.title && (
+              {data.map(e => (
                 <tr>
-                  <td>제목</td>
-                  <td>{data.title}</td>
+                  <td>{e.label}</td>
+                  <td>{e.data}</td>
                 </tr>
-              )}
-              <tr>
-                <td>복원 url</td>
-                <td>
-                  <a href={data.long_url} target="_blank">
-                    {data.long_url}
-                  </a>
-                </td>
-              </tr>
+              ))}
             </tbody>
           </Table>
         </div>
